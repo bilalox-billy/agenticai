@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PYTHON_VERSION=3.12
+PYTHON_VERSION=3.10
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 VENV_DIR=$DIR/venv
