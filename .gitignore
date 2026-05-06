@@ -219,3 +219,4 @@ __marimo__/
 
 .python-version
 commands.txt
+faiss_index/
