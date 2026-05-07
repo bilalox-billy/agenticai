@@ -18,3 +18,7 @@ chromadb
 langchain_chroma
 streamlit
 langchain_groq
+fastapi
+uvicorn
+langserve
+ sse_starlette
