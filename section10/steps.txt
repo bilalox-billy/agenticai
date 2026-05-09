@@ -1,0 +1,4 @@
+Step1: uv init
+step2: uv venv
+ste3: uv ./venv/Scripts/activate
+step4: uv add -r requirements.txt

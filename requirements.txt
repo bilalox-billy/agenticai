@@ -21,4 +21,5 @@ langchain_groq
 fastapi
 uvicorn
 langserve
- sse_starlette
+sse_starlette
+langchain-google-genai
