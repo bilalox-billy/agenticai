@@ -221,3 +221,4 @@ __marimo__/
 commands.txt
 faiss_index/
 chroma_db/
+langraph/

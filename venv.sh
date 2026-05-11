@@ -1,9 +1,9 @@
 #!/bin/bash
 
-PYTHON_VERSION=3.10
+PYTHON_VERSION=3.12
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-VENV_DIR=$DIR/venv
+VENV_DIR=$DIR/langraph
 
 # Create virtual using specific pyenv version
 yes no | pyenv install $PYTHON_VERSION
