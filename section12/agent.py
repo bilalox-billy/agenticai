@@ -1,6 +1,7 @@
 from typing import Annotated
 from typing_extensions import TypedDict
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langgraph.graph import END, START
 from langgraph.graph.state import StateGraph
 from langgraph.graph.message import add_messages
@@ -12,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-os.environ["OPENAI_API_KEY"]=os.getenv("OPENAI_API_KEY")
+os.environ["GROQ_API_KEY"]=os.getenv("GROQ_API_KEY")
 
 os.environ["LANGSMITH_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
 
@@ -20,7 +21,7 @@ os.environ["LANGSMITH_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
 class State(TypedDict):
     messages:Annotated[list[BaseMessage],add_messages]
 
-model=ChatOpenAI(temperature=0)
+model=ChatGroq(model="llama-3.1-8b-instant")
 
 def make_default_graph():
     graph_workflow=StateGraph(State)
@@ -45,8 +46,6 @@ def make_alternative_graph():
 
     tool_node = ToolNode([add])
     model_with_tools = model.bind_tools([add])
-
-
     
     def call_model(state):
         return {"messages": [model_with_tools.invoke(state["messages"])]}
@@ -61,9 +60,9 @@ def make_alternative_graph():
 
     graph_workflow.add_node("agent", call_model)
     graph_workflow.add_node("tools", tool_node)
-    graph_workflow.add_edge("tools", "agent")
     graph_workflow.add_edge(START, "agent")
-    graph_workflow.add_conditional_edges("agent", should_continue)
+    graph_workflow.add_conditional_edges("agent", should_continue, {"tools": "tools", END: END})
+    graph_workflow.add_edge("tools", "agent")
 
     agent = graph_workflow.compile()
     return agent

@@ -222,3 +222,8 @@ commands.txt
 faiss_index/
 chroma_db/
 langraph/
+section12/.langgraph_api/.langgraph_checkpoint.1.pckl
+section12/.langgraph_api/.langgraph_checkpoint.2.pckl
+section12/.langgraph_api/.langgraph_checkpoint.3.pckl
+section12/.langgraph_api/.langgraph_ops.pckl
+section12/.langgraph_api/.langgraph_retry_counter.pckl
