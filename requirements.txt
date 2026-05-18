@@ -25,3 +25,4 @@ sse_starlette
 langchain-google-genai
 langgraph
 langgraph-cli[inmem]
+langchainhub
